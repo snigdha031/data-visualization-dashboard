@@ -1,0 +1,11 @@
+# Mac system files
+.DS_Store
+
+# Node / general (future-proof)
+node_modules/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
