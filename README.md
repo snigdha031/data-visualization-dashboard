@@ -1,4 +1,7 @@
-# Student Performance Visualization Dashboard
+# Student Performance & Lifestyle Analytics Dashboard
+
+## Live Demo
+👉 https://snigdha031.github.io/data-visualization-dashboard
 
 Interactive data visualization dashboard analyzing the relationship between student habits and academic performance. Built with D3.js for the University of Passau.
 
@@ -14,7 +17,7 @@ Explore how study habits, lifestyle choices, and socioeconomic factors correlate
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/snigdha031/student-performance-dashboard.git
+   git clone https://github.com/snigdha031/data-visualization-dashboard.git
    cd student-performance-dashboard
    ```
 
@@ -56,7 +59,9 @@ Explore how study habits, lifestyle choices, and socioeconomic factors correlate
 ├── style.css               # Responsive styling
 ├── dataVis.js             # Scatterplot & radar chart
 ├── dashboard.js           # 6 dashboard visualizations
-└── student_habits_performance_processed.csv
+├──data\
+├  └── student_habits_performance_processed.csv
+├  └── student_habits_performance.csv
 ```
 
 ## Tech Stack
