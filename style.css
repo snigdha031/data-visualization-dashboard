@@ -1,0 +1,281 @@
+/* Global styles */
+body {
+    height: 100%;
+    margin: 0;
+    font: 14px sans-serif;
+}
+
+svg {
+    font: 10px sans-serif;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+/* General layout containers */
+.container {
+    display: table-cell;
+    vertical-align: top;
+    height: 100%;
+    padding: 10px;
+    border: 0px solid black;
+}
+
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+/* Responsive grid layout */
+
+@media (max-width: 1000px) {
+    .dashboardGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .dashboardGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Chart layout */
+
+#chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+/* Extra space before Chart 3 & 4 */
+#chart3, #chart4 {
+    margin-top: 40px;
+}
+
+/* Larger height for Chart 1 */
+#chart1 {
+    height: 500px;
+    margin-bottom: 0;
+}
+
+#chart4 {
+    margin-bottom: 60px; /* Add space below chart */
+  }
+  
+  #chart4-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 10px;
+    position: relative;
+  }
+
+#chart4 svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+/* Chart subtitles */
+.chart-subtitle {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 14px;
+}
+
+.chart-subtitle strong {
+    font-weight: 600;
+    color: #222;
+}
+
+/* Table styles */
+.dataTableClass {
+    width: 80%;
+    border-collapse: collapse;
+    border: 2px black solid;
+}
+.tableHeaderClass {
+    border: 2px solid black;
+    padding: 5px;
+    background-color: lightgray;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.tableBodyClass {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+/* Legend and close button */
+#legend {
+    border: 1px solid black;
+    padding: 10px;
+}
+.legend-item {
+    font-weight: bold;
+    font-size: 13px;
+}
+.color-circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.close {
+    display: inline-block;
+    padding: 1px 5px;
+    margin: 4px;
+    border: 1px solid black;
+    background: #fff;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    user-select: none;
+}
+.close:hover {
+    background: #ddd;
+}
+
+/* Tab link styles */
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    margin: 0.5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 33%;
+}
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Tab content container */
+.tabcontent {
+    color: black;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+/* Chart dropdown filters */
+.chart-dropdown-container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+.chart-dropdown-container label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.chart-dropdown-container select {
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+/* Responsive dropdown layout */
+
+@media (max-width: 600px) {
+    .chart-dropdown-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .chart-dropdown-container select {
+        min-width: 100%;
+    }
+}
+
+/* Tooltip styles */
+div.tooltip {
+    z-index: 1000;
+    position: absolute;
+    text-align: left;
+    padding: .2rem;
+    margin: 1rem;
+    background: #313639;
+    color: #f9f9f9;
+    border-radius: 8px;
+    font-size: .7rem;
+    pointer-events: none;
+    border: 0;
+}
+.tooltip {
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(255,255,255,0.95);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    pointer-events: none;
+    color: #000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Axis styling */
+
+.axis line,
+.axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    fill: black;
+}
+
+/* Scatterplot dot style */
+
+.dot {
+    cursor: pointer;
+}
+
+/* info styling */
+
+#credits {
+    font: 12px sans-serif;
+    padding-bottom: 1%;
+}
+.instructions {
+    color: red;
+}
+.optional {
+    color: darkgreen;
+}
+fieldset {
+    border-width: 0;
+}
+.chart-loading {
+    position: relative;
+    min-height: 200px;
+}
+.chart-loading::after {
+    content: "Loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

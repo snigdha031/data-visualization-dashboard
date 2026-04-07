@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+* Data Visualization - Framework
+* Copyright (C) University of Passau
+*   Faculty of Computer Science and Mathematics
+*   Chair of Cognitive sensor systems
+* Maintenance:
+*   2025, Alexander Gall <alexander.gall@uni-passau.de>
+*
+* All rights reserved.
+-->
+<html lang="en">
+
+<head>
+    <!-- ==================== Metadata & Fonts ==================== -->
+    <meta charset="UTF-8">
+    <title>Analysis of Student's Habits vs Performance</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <!-- ==================== Stylesheets ==================== -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- ==================== Scripts ==================== -->
+     
+    <!-- Load D3.js for data-driven visualizations -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- Load jQuery and jQuery UI for dropdowns and UI widgets -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!--  Custom scripts for Part 1 (Basic Visualisation) and Part 2 (Dashboard) -->
+    <script src="dataVis.js"></script>      <!-- Part 1 -->
+    <script src="dashboard.js"></script>    <!-- Part 2 -->
+</head>
+
+<!-- Call init() to initialize default scatterplot, radar chart, and table -->
+<body onload="init()">
+    
+    <!-- ==================== Page Header ==================== -->
+    <h1>Analysis of Student's Habits vs Performance</h1>
+
+    <!-- Credits -->
+    <div id="credits">
+        Created by <span class="instructions">Snigdha Raghavan Pradhipa & Vaishnavi Narasimhaiah Sathish</span>
+        for the Data Visualization Lecture at 
+        <a href="https://www.fim.uni-passau.de/digitale-bildverarbeitung">
+            Faculty of Computer Science and Mathematics - Chair of Cognitive sensor systems - University of Passau
+        </a>.
+    </div>
+
+    <!-- ==================== Tab Navigation ==================== -->
+
+    <button class="tablink" onclick="openPage('DataLoading', this, 'blue')" id="defaultOpen">Data Loading</button>
+    <button class="tablink" onclick="openPage('BasicVisualization', this, 'blue')">Basic Visualization</button>
+    <button class="tablink" onclick="openPage('Dashboard', this, 'blue')">Dashboard</button>
+
+   <!-- ==================== Tab 1: Data Upload & Table ==================== -->
+
+    <div id="DataLoading" class="tabcontent">
+        <p>Select your data here: <input id="upload" type="file"></p>
+        <div id="dataTable"></div>
+    </div>
+
+    <!-- ==================== Tab 2: Basic Visualization ==================== -->
+     
+    <div id="BasicVisualization" class="tabcontent">
+        <!-- Scatterplot -->
+        <div class="container">
+            <h2>Scatterplot</h2>
+            <p>Select dimensions to be displayed here:</p>
+            <div id="menu">
+                <form action="#">
+                    <fieldset>
+                        <label for="scatterX">x axis: </label>
+                        <select name="scatterX" id="scatterX"></select><br/>
+                        <label for="scatterY">y axis: </label>
+                        <select name="scatterY" id="scatterY"></select><br/>
+                        <label for="size">size: </label>
+                        <select name="size" id="size"></select>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="sp"></div>
+        </div>
+
+        <!-- Radar Chart -->
+        <div class="container">
+            <h2>Radar Chart</h2>
+            <div id="radar"></div>
+            <div id="legend">
+                <strong>Legend:</strong>
+                <div id="legend-items"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Tab 3: Dashboard ==================== -->
+    <div id="Dashboard" class="tabcontent">
+        <h1>Student Performance Dashboard</h1>
+        <div id="dashboard-color-legend" style="margin-top: 20px;"></div>
+
+
+        <div class="dashboardGrid">
+
+            <!-- Chart 1: Sunburst -->
+            <div class="container">
+                <h2>Breakdown of Exam Scores by Categorical Factors</h2>
+                <div id="chart1-container" style="text-align: center;">
+                    <div id="chart1"></div>
+                    <div id="chart1-legend" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+
+            <!-- Chart 2: Boxplot -->
+            <div class="container">
+                <h2>Variation in Performance Across Student Groups</h2>
+                <div class="chart-dropdown-container">
+                    <label for="chart2-x">Group by (X):</label>
+                    <select id="chart2-x"></select>
+                    <label for="chart2-y">Measure (Y):</label>
+                    <select id="chart2-y"></select>
+                </div>
+                <div id="chart2"></div>
+            </div>
+
+            <!-- Chart 3: Scatterplot -->
+            <div class="container">
+                <h2>Uncovering Relationships Between Study Habits and Performance</h2>
+                <div class="chart-dropdown-container">
+                    <label for="chart3-x">X Axis:</label>
+                    <select id="chart3-x"></select>
+                    <label for="chart3-y">Y Axis:</label>
+                    <select id="chart3-y"></select>
+                </div>
+                <div id="chart3"></div>
+            </div>
+
+            <!-- Spacer After Row 1 -->
+            <div class="container" style="grid-column: span 3; height: 30px;"></div>
+
+            <!-- Chart 4: Parallel Coordinates -->
+            <div class="container">
+                <h2>Multivariate Patterns Behind Student Success</h2>
+                <div id="chart4"></div>
+                <div id="chart4-legend"></div>
+            </div>
+
+            <!-- Chart 5: Correlation Heatmap -->
+            <div class="container">
+                <h2>Correlation Matrix of Numerical Features</h2>
+                <div id="chart5"></div>
+            </div>
+
+            <!-- Chart 6: Density Contour -->
+            <div class="container">
+                <h2>Density Contour: Student Attributes vs Performance</h2>
+                <div class="chart-dropdown-container">
+                    <label for="chart6-x">X Axis:</label>
+                    <select id="chart6-x"></select>
+                    <label for="chart6-y">Y Axis:</label>
+                    <select id="chart6-y"></select>
+                </div>
+                <div id="chart6"></div>
+            </div>
+
+
+<!-- Floating tooltip used in all charts for dynamic data display -->
+    <div id="tooltip" style="
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 4px;
+        pointer-events: none;
+        opacity: 0;
+        font-size: 12px;
+    "></div>
+</body>
+</html>
